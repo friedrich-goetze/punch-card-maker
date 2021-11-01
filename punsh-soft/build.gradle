@@ -1,26 +1,7 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
+    id 'org.jetbrains.kotlin.jvm' version '1.5.31' apply false
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.31' apply false
 }
 
 group = 'de.fgoetze.punsh'
 version = '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
-}
-
-test {
-    useJUnit()
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = '11'
-}
-
-compileTestKotlin {
-    kotlinOptions.jvmTarget = '11'
-}
