@@ -1,4 +1,11 @@
 import de.fgoetze.punch.api.BitRows
+import de.fgoetze.punch.api.PCLayout
+import de.fgoetze.punch.api.PCProject
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+
+private val json = Json { prettyPrint = true }
 
 fun main() {
     val bits = BitRows(100)
@@ -18,4 +25,15 @@ fun main() {
     println(bits.getRow(98))
     println(bits.getRow(98))
     println(bits.getRow(98))
+
+    val project = PCProject(
+        "Foo Project",
+        PCLayout("Grobstich", 500.0, 80.0),
+        bits
+    )
+
+    val j = json.encodeToString(project)
+    val p2 = json.decodeFromString<PCProject>(j)
+
+    println("EQUAL ${project == p2}")
 }

@@ -11,9 +11,12 @@ import kotlinx.serialization.encoding.Encoder
 data class PCProject(
     var name: String,
     var layout: PCLayout,
-    val rows: BitRows
+    val data: BitRows
 )
 
+/**
+ * Efficient data structure for many rows of bit-data.
+ */
 @Serializable(with = BitRowsSerializer::class)
 class BitRows(
     val columns: Int
@@ -27,17 +30,28 @@ class BitRows(
     private val rows = mutableListOf<LongArray>()
 
     val size: Int get() = rows.size
+    val lastIndex: Int get() = rows.lastIndex
+    val indices: IntRange get() = rows.indices
 
+    /**
+     * Returns a view on a single rows. Elements can be set. You cannot add or remove bits.
+     */
     fun getRow(row: Int): MutableList<Boolean> {
         require(row in rows.indices)
         return BitsView(row)
     }
 
+    /**
+     * Checks if a certain bit is set.
+     */
     fun get(row: Int, col: Int): Boolean {
         requireCoords(row, col)
         return BitsArrayOps.getBit(rows[row], col)
     }
 
+    /**
+     * Sets a certain bit.
+     */
     fun set(row: Int, col: Int, value: Boolean): Boolean {
         requireCoords(row, col)
         return BitsArrayOps.setBit(rows[row], col, value)
@@ -48,6 +62,11 @@ class BitRows(
         require(col in 0 until columns)
     }
 
+    /**
+     * Adds an empty row at the given index.
+     *
+     * @param insertAt insert index. `-1` to add a row to the end.
+     */
     fun addRow(insertAt: Int = -1): MutableList<Boolean> {
         require(insertAt == -1 || insertAt in 0..rows.size)
 
@@ -58,6 +77,9 @@ class BitRows(
         return BitsView(insertIndex)
     }
 
+    /**
+     * Removes a row at the given index.
+     */
     fun removeRow(index: Int) {
         require(index in rows.indices)
         rows.removeAt(index)
@@ -76,9 +98,11 @@ class BitRows(
         }
     }
 
-    override fun hashCode(): Int = System.identityHashCode(this)
+    override fun hashCode(): Int = rows.fold(0) { h, arr -> h xor arr.sum().toInt() }
 
-    override fun equals(other: Any?): Boolean = this === other
+    override fun equals(other: Any?): Boolean = other is BitRows
+            && other.rows.size == rows.size
+            && other.rows.asSequence().zip(rows.asSequence()).all { it.first.contentEquals(it.second) }
 
     override fun toString(): String = "BitRows(rows: $size, columns: $columns)"
 
@@ -106,9 +130,9 @@ class BitRows(
             return BitsArrayOps.getBit(longs, index)
         }
 
-        override fun hashCode(): Int = System.identityHashCode(this)
+        override fun hashCode(): Int = longs.sum().toInt()
 
-        override fun equals(other: Any?): Boolean = other === this
+        override fun equals(other: Any?): Boolean = other is BitsView && other.longs.contentEquals(this.longs)
 
         override fun toString() = String(CharArray(columns) { if (get(it)) '1' else '0' })
 
