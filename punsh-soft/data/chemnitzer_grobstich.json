@@ -1,0 +1,71 @@
+{
+  "name": "Chemnitzer Grobstich",
+  "width": 405.0,
+  "height": 58.0,
+  "dataGrids": [
+    {
+      "firstHole": {
+        "diameter": 4.8,
+        "x": 29.15,
+        "y": 5.1
+      },
+      "xSpacing": 6.83,
+      "ySpacing": 6.83,
+      "xHoleCount": 26,
+      "yHoleCount": 8
+    },
+    {
+      "firstHole": {
+        "diameter": 4.8,
+        "x": 213.6,
+        "y": 5.1
+      },
+      "xSpacing": 6.83,
+      "ySpacing": 6.83,
+      "xHoleCount": 25,
+      "yHoleCount": 8
+    }
+  ],
+  "structuralHoles": [
+    {
+      "diameter": 8.9,
+      "x": 19.6,
+      "y": 29.0
+    },
+    {
+      "diameter": 8.9,
+      "x": 387.6,
+      "y": 29.0
+    },
+    {
+      "diameter": 4.8,
+      "x": 8.3,
+      "y": 8.5
+    },
+    {
+      "diameter": 4.8,
+      "x": 8.3,
+      "y": 49.5
+    },
+    {
+      "diameter": 4.8,
+      "x": 206.7,
+      "y": 8.5
+    },
+    {
+      "diameter": 4.8,
+      "x": 206.7,
+      "y": 49.5
+    },
+    {
+      "diameter": 4.8,
+      "x": 395.9,
+      "y": 8.5
+    },
+    {
+      "diameter": 4.8,
+      "x": 395.9,
+      "y": 49.5
+    }
+  ]
+}

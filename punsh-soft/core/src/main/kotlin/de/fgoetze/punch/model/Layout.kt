@@ -18,6 +18,7 @@ data class PCLayout(
 
 @Serializable
 data class PCHoleGrid(
+    /** Location and size of the left-top hole in the grid. */
     var firstHole: PCVHole,
     var xSpacing: Double,
     var ySpacing: Double,

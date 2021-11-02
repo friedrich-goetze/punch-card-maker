@@ -1,6 +1,4 @@
-import de.fgoetze.punch.model.BitRows
-import de.fgoetze.punch.model.PCLayout
-import de.fgoetze.punch.model.PCProject
+import de.fgoetze.punch.model.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -28,9 +26,19 @@ fun main() {
 
     val project = PCProject(
         "Foo Project",
-        PCLayout("Grobstich", 500.0, 80.0),
+        PCLayout("Grobstich", 500.0, 80.0).apply {
+            dataGrids += PCHoleGrid(
+                PCVHole(4.1, 42.0, 10.0),
+                9.0, 9.0,
+                40,
+                10
+            )
+            structuralHoles += PCVHole(11.0, 31.0, 12.0)
+        },
         bits
     )
+
+    println(json.encodeToString(project.layout))
 
     val j = json.encodeToString(project)
     val p2 = json.decodeFromString<PCProject>(j)
