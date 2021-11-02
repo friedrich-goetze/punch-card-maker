@@ -1,4 +1,4 @@
-package de.fgoetze.punch.api
+package de.fgoetze.punch.model
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName

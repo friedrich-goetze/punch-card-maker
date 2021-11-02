@@ -1,6 +1,6 @@
-import de.fgoetze.punch.api.BitRows
-import de.fgoetze.punch.api.PCLayout
-import de.fgoetze.punch.api.PCProject
+import de.fgoetze.punch.model.BitRows
+import de.fgoetze.punch.model.PCLayout
+import de.fgoetze.punch.model.PCProject
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
