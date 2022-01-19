@@ -24,24 +24,27 @@ fun main() {
     println(bits.getRow(98))
     println(bits.getRow(98))
 
-    val project = PCProject(
-        "Foo Project",
-        PCLayout("Grobstich", 500.0, 80.0).apply {
-            dataGrids += PCHoleGrid(
-                PCVHole(4.1, 42.0, 10.0),
-                9.0, 9.0,
-                40,
-                10
-            )
-            structuralHoles += PCVHole(11.0, 31.0, 12.0)
-        },
-        bits
-    )
+    
 
-    println(json.encodeToString(project.layout))
-
-    val j = json.encodeToString(project)
-    val p2 = json.decodeFromString<PCProject>(j)
-
-    println("EQUAL ${project == p2}")
+//    val project = PCProject(
+//        "Foo Project",
+//        PCLayout("Grobstich", 500.0, 80.0).apply {
+//            dataGrids += PCHoleGrid(
+//                PCVHole(4.1, 42.0, 10.0),
+//                9.0, 9.0,
+//                40,
+//                10
+//            )
+//            structuralHoles += PCVHole(11.0, 31.0, 12.0)
+//        },
+//
+//        bits
+//    )
+//
+//    println(json.encodeToString(project.layout))
+//
+//    val j = json.encodeToString(project)
+//    val p2 = json.decodeFromString<PCProject>(j)
+//
+//    println("EQUAL ${project == p2}")
 }

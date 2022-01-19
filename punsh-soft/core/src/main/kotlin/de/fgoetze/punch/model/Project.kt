@@ -9,8 +9,13 @@ import kotlinx.serialization.encoding.Encoder
 
 @Serializable
 data class PCProject(
+    /** Project name. */
     var name: String,
+    /** Punch card layout. */
     var layout: PCLayout,
+    /** Maps the index of each element to a hole from the layout. */
+    val dataToLayoutMapping: MutableList<Int>,
+    /** The actual data. One row for each punch card. */
     val data: BitRows
 )
 

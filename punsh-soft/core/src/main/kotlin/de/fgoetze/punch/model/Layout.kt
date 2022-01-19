@@ -14,7 +14,9 @@ data class PCLayout(
     val dataGrids: MutableList<PCHoleGrid> = mutableListOf(),
     val structuralHoles: MutableList<PCVHole> = mutableListOf(),
     val textBoxes: MutableList<PCLTextBox> = mutableListOf()
-)
+) {
+    val dataHoleCount: Int get() = dataGrids.sumOf { it.xHoleCount * it.yHoleCount }
+}
 
 @Serializable
 data class PCHoleGrid(
@@ -24,7 +26,13 @@ data class PCHoleGrid(
     var ySpacing: Double,
     var xHoleCount: Int,
     var yHoleCount: Int
-)
+) {
+    val lastHole: PCVHole
+        get() = firstHole.copy(
+            x = firstHole.x + xHoleCount * xSpacing,
+            y = firstHole.y + yHoleCount * ySpacing
+        )
+}
 
 enum class PCLTextType {
     /** Text, which is always the same. */
