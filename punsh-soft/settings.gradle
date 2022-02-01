@@ -1,3 +1,4 @@
 rootProject.name = 'punsh-soft'
 includeBuild 'kotlin-conventions'
 include 'core'
+include 'webui'
