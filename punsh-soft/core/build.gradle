@@ -1,8 +1,8 @@
 plugins {
-    id 'punsh-soft.kotlin-conventions'
+    id "punsh-soft.kotlin-conventions"
 }
 
 dependencies {
-    implementation 'org.redundent:kotlin-xml-builder:1.7.3'
-    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation "org.redundent:kotlin-xml-builder:1.7.4"
+    implementation "org.apache.commons:commons-lang3:3.12.0"
 }
