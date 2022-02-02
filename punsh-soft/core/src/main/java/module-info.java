@@ -1,4 +1,4 @@
-module de.fgoetze.punsh.core {
+module punchsoft.core {
     requires kotlin.stdlib;
     requires kotlinx.serialization.core;
     requires java.desktop;

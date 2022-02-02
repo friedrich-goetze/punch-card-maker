@@ -1,5 +1,5 @@
-module de.fgoetze.punch.jfxui {
-    requires de.fgoetze.punsh.core;
+module punchsoft.jfxui {
+    requires punchsoft.core;
     requires kotlin.stdlib;
     requires javafx.controls;
     requires javafx.graphics;

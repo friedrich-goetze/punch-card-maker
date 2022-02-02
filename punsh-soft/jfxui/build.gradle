@@ -17,7 +17,7 @@ javafx {
 
 application {
     mainClass = 'de.fgoetze.punch.jfxui.MainKt'
-    mainModule = 'de.fgoetze.punch.jfxui'
+    mainModule = 'punchsoft.jfxui'
 }
 
 jar {
