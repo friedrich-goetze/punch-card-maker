@@ -18,9 +18,9 @@ test {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "$java_version"
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "$java_version"
 }

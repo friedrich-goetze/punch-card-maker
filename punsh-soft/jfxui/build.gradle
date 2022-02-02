@@ -1,0 +1,46 @@
+plugins {
+    id "application"
+    id "org.beryx.jlink"
+    id "punsh-soft.kotlin-conventions"
+    id "org.openjfx.javafxplugin"
+}
+
+dependencies {
+    implementation project(":core")
+}
+
+javafx {
+    version = "$javafx_version"
+    modules = [ "javafx.controls" ]
+}
+
+
+application {
+    mainClass = 'de.fgoetze.punch.jfxui.MainKt'
+    mainModule = 'de.fgoetze.punch.jfxui'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': "modular-hello",
+                'Main-Class': 'org.beryx.modular.hello.Hello'
+    }
+}
+
+jlink {
+    mergedModule {
+//        requires 'java.naming'
+//        requires 'java.xml'
+    }
+    launcher{
+        name = 'punchsoft-gui'
+//        jvmArgs = ['-Dlogback.configurationFile=./logback.xml']
+    }
+    jpackage {
+        if (org.gradle.internal.os.OperatingSystem.current().windows) {
+            installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
+            imageOptions += ['--win-console']
+        }
+    }
+}
+
