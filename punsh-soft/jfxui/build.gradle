@@ -7,6 +7,7 @@ plugins {
 
 dependencies {
     implementation project(":core")
+    implementation 'org.jfxtras:jmetro:11.6.15'
 }
 
 javafx {
@@ -16,31 +17,35 @@ javafx {
 
 
 application {
-    mainClass = 'de.fgoetze.punch.jfxui.MainKt'
-    mainModule = 'punchsoft.jfxui'
+    mainClass = "de.fgoetze.punch.jfxui.MainKt"
+    mainModule = "punchsoft.jfxui"
 }
 
 jar {
     manifest {
-        attributes 'Implementation-Title': "modular-hello",
-                'Main-Class': 'org.beryx.modular.hello.Hello'
+        attributes "Implementation-Title": "modular-hello",
+                "Main-Class": "org.beryx.modular.hello.Hello"
     }
 }
 
 jlink {
     mergedModule {
-//        requires 'java.naming'
-//        requires 'java.xml'
+//        requires "java.naming"
+//        requires "java.xml"
     }
     launcher{
-        name = 'punchsoft-gui'
-//        jvmArgs = ['-Dlogback.configurationFile=./logback.xml']
+        name = "punchsoft-gui"
+//        jvmArgs = ["-Dlogback.configurationFile=./logback.xml"]
     }
     jpackage {
         if (org.gradle.internal.os.OperatingSystem.current().windows) {
-            installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
-            imageOptions += ['--win-console']
+            installerOptions += ["--win-per-user-install", "--win-dir-chooser", "--win-menu", "--win-shortcut"]
+            imageOptions += ["--win-console"]
         }
     }
+}
+
+repositories {
+    mavenCentral()
 }
 
