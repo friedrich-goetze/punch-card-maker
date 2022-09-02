@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        kotlin_version = "1.6.10"
-        kotlin_serialization_json_version = "1.3.2"
+        kotlin_version = "1.7.10"
+        kotlin_serialization_json_version = "1.4.0"
         java_version = "17"
         javafx_version = "17.0.2"
     }
@@ -10,9 +10,9 @@ buildscript {
 plugins {
     id "org.jetbrains.kotlin.jvm" version "$kotlin_version" apply false
     id "org.jetbrains.kotlin.plugin.serialization" version "$kotlin_version" apply false
-    id "org.beryx.jlink" version "2.24.4" apply false
-    id "org.javamodularity.moduleplugin" version "1.8.10" apply false
-    id "org.openjfx.javafxplugin" version "0.0.11" apply false
+    id "org.beryx.jlink" version "2.25.0" apply false
+    id "org.javamodularity.moduleplugin" version "1.8.12" apply false
+    id "org.openjfx.javafxplugin" version "0.0.13" apply false
 }
 
 group = "de.fgoetze.punsh"
