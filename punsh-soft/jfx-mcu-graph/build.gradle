@@ -6,8 +6,6 @@ plugins {
 }
 
 dependencies {
-    implementation project(":core")
-    implementation 'org.jfxtras:jmetro:11.6.15'
 }
 
 javafx {
@@ -17,14 +15,14 @@ javafx {
 
 
 application {
-    mainClass = "de.fgoetze.punch.jfxui.MainKt"
-    mainModule = "punchsoft.jfxui"
+    mainClass = "de.fgoetze.mcugraph.MainKt"
+    mainModule = "punchsoft.mcugraph"
 }
 
 jar {
     manifest {
-        attributes "Implementation-Title": "Punshsoft UI",
-                "Main-Class": "de.fgoetze.punch.jfxui.MainKt"
+        attributes "Implementation-Title": "MCU Graph",
+                "Main-Class": "de.fgoetze.mcugraph.MainKt"
     }
 }
 
@@ -34,7 +32,7 @@ jlink {
 //        requires "java.xml"
     }
     launcher{
-        name = "punchsoft-gui"
+        name = "mcu-graph"
 //        jvmArgs = ["-Dlogback.configurationFile=./logback.xml"]
     }
     jpackage {
