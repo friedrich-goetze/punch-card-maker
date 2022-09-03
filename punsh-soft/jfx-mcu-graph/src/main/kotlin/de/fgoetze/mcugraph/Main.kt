@@ -3,7 +3,9 @@ package de.fgoetze.mcugraph
 import de.fgoetze.mcugraph.app.McuGraphApp
 import javafx.application.Application
 
-fun main() {
-    println("Hello World")
+fun main(args: Array<String>) {
+    if (args.contains("-fix-black") || System.getenv("FIX_BLACK") == "true")
+        System.setProperty("prism.order", "sw")
+
     Application.launch(McuGraphApp::class.java)
 }

@@ -2,8 +2,8 @@ buildscript {
     ext {
         kotlin_version = "1.7.10"
         kotlin_serialization_json_version = "1.4.0"
-        java_version = "17"
-        javafx_version = "17.0.2"
+        java_version = "18"
+        javafx_version = "18.0.2"
     }
 }
 
