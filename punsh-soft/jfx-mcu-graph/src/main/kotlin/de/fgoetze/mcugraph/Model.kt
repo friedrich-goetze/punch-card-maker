@@ -3,11 +3,14 @@ package de.fgoetze.mcugraph
 import javafx.beans.binding.Binding
 import javafx.beans.property.*
 import javafx.beans.value.ChangeListener
+import javafx.beans.value.ObservableValue
 import javafx.collections.FXCollections
 import javafx.collections.ListChangeListener
 import javafx.collections.ObservableList
 import javafx.scene.chart.XYChart
 import java.util.IdentityHashMap
+import kotlin.io.path.Path
+import kotlin.io.path.name
 
 data class McuSeries(
     val path: String? = null,
@@ -16,15 +19,20 @@ data class McuSeries(
     val series: XYChart.Series<Number, Number> = XYChart.Series<Number, Number>(),
     val xOffsetProperty: DoubleProperty = SimpleDoubleProperty(0.0),
     val yOffsetProperty: DoubleProperty = SimpleDoubleProperty(0.0),
-)
+) {
+    init {
+        series.name = path?.let { Path(it) }?.name?.takeIf { it.isNotEmpty() }
+    }
+}
 
 class AppModel {
 
+    private val mutRevision = SimpleIntegerProperty(0)
     private val mutDisplayFXSeries: ObservableList<XYChart.Series<Number, Number>> = FXCollections.observableArrayList()
     val selectedMcuSeries: ObjectProperty<McuSeries?> = SimpleObjectProperty(null)
     val mcuSeries: ObservableList<McuSeries> = FXCollections.observableArrayList()
     val displayFXSeries = FXCollections.unmodifiableObservableList(mutDisplayFXSeries)
-
+    val revision: ObservableValue<Int> = mutRevision as ObservableValue<Int>
     private val series2listeners = IdentityHashMap<McuSeries, McuListeners>()
 
 
@@ -62,15 +70,21 @@ class AppModel {
             )
         }
         series.series.data = newSeries
+        tickRevision()
     }
 
     private fun updateDisplayFXSeries() {
         val visible = mcuSeries.filter { it.visibleProperty.value }
         mutDisplayFXSeries.removeAll(mutDisplayFXSeries.filter { fx -> visible.none { vis -> vis.series === fx } })
         visible.forEachIndexed { index, mcuSeries ->
-            if (mutDisplayFXSeries[index] !== mcuSeries.series)
+            if (mutDisplayFXSeries.lastIndex < index || mutDisplayFXSeries[index] !== mcuSeries.series)
                 mutDisplayFXSeries.add(index, mcuSeries.series)
         }
+        tickRevision()
+    }
+
+    private fun tickRevision() {
+        mutRevision.value += 1
     }
 
     private inner class McuListeners(private val mcuSeries: McuSeries) {

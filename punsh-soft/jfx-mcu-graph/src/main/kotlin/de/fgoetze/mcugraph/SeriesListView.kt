@@ -37,7 +37,7 @@ fun createSeriesListView(appModel: AppModel): Region = VBox().apply {
                 file.bufferedReader(Charsets.US_ASCII).use { r ->
                     while (true) {
                         val l = r.readLine()?.trim() ?: break
-                        val parts = l.split(" ").mapNotNull { it.toDoubleOrNull() }
+                        val parts = l.split(" ").mapNotNull { it.toDoubleOrNull() }.filter { !it.isNaN() && it.isFinite() }
                         val x = when (parts.size) {
                             0 -> continue
                             1 -> if (lastX.isNaN()) 0.0 else lastX + 1.0

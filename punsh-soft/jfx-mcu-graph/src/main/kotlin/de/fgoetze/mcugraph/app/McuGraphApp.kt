@@ -27,11 +27,11 @@ class McuGraphApp : Application() {
                     children.setAll(recorder, list)
                     VBox.setVgrow(list, Priority.ALWAYS)
                 })
-                items.add(SplitPane().apply {
-                    orientation = Orientation.VERTICAL
-                    items.add(createGraphView(model))
-                    items.add(createDetailView(model))
-                    setDividerPosition(0, .8)
+                items.add(VBox().apply {
+                    children.add(createGraphView(model).apply {
+                        VBox.setVgrow(this, Priority.ALWAYS)
+                    })
+                    children.add(createDetailView(model))
                 })
                 setDividerPosition(0, .2)
             },
